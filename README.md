@@ -1,245 +1,112 @@
-printf()
+# printf Project
 
-The printf project is a collaboration project by Eyob Lakew and Wendimu Tarekegne, students of the ALX Software Engineering Programme, in which a function named "_printf" imitates the actual "printf" command located in the stdio.h library. It contains some of the basic features and functions found in the manual 3 of "printf".
+## Description
+This team project is part of the first year curriculum of ALX.
+_printf replicates the C standard library printf() function.
 
-_printf() is a function that performs formatted output conversion and prints data. Its prototype is the following:
+What you should learn from this project:
 
-int _printf(const char *format, ...)
+* How to use git in a team setting
+* Applying variadic functions to a big project
+* The complexities of printf
+* Managing a lot of files and finding a good workflow
 
-Where format contains the string that is printed. As _printf() is variadic function, it can receives n arguments that replace by n tags written inside the string.
+---
 
-The format tags prototype is the following:
+## Prototype
+```int _printf(const char *format, ...);```
 
-%[flags][length]specifier
+## Usage
+* Prints a string to the standard output, according to a given format
+* All files were created and compiled on Ubuntu 14.04.4 LTS using GCC 4.8.4 with the command ```gcc -Wall -Werror -Wextra -pedantic *.c```
+* Returns the number of characters in the output string on success, -1 otherwise
+* Call it this way: ```_printf("format string", arguments...)``` where ```format string``` can contain conversion specifiers and flags,
+along with regular characters
 
-If the program runs successfully, the return value is the amount of chars printed.
-Specifier 	Output
-c 	Character
-d or i 	Signed decimal integer
-s 	String of characters
-b 	Signed binary
-o 	Signed octal
-u 	Unsigned integer
-x 	Unsigned hexadecimal
-X 	Unsigned hexadecimal (uppercase)
-p 	Pointer address
-r 	Reverse string of characters
-R 	ROT13 translation of string
-S 	String with special chars replaced by their ASCII value
-% 	Character
-Flags 	Description 	Specifiers
-+ 	Prints a plus sign (+) when the argument is a positive number. In other case, prints a minus sign (-). 	i, d
-(space) 	Prints a blank space if the argument is a positive number 	i, d
-# 	Prints 0, 0x and 0X for o, x and X specifiers, respectively. It doesn't print anything if the argument is zero 	o, x, X
-Length 	Description 	Specifiers
-l 	Prints a long int or unsigned long int 	i, d, o, u, x and X
-h 	Prints a short int or unsigned short int 	i, d, o, u, x and X
-Examples
+## Examples
 
-    Printing the string of chars "Hello, Holberton":
-        Use: _printf("Hello Hol%s.", "berton");
-        Output: Hello Holberton.
+* ```_printf("Hello, main\n")``` *prints "Hello, Main", followed by a new line*
+* ```_printf("%s", "Hello")``` *prints "Hello"*
+* ```_printf("This is a number: %d", 98)``` *prints "This is a number: 98"*
 
-    Printing an integer number:
-        Use: _printf("10 + 10 is equal to %d.", 20);
-        Output: 10 + 10 is equal to 20.
+---
 
-    Printing a binary, octal and hexadecimal:
-        Use: _printf("10 in binary is [%b], in octal is [%o] and in hexadecimal is [%x]", 5, 5, 5);
-        Output: 10 in binary is [1010], in octal is [12] and in hexadecimal is [A]
+# Tasks
 
-    Printing a string codified in ROT13:
-        Use: _printf("Hello in ROT13 is %R", "Hello");
-        Output: Hello in ROT13 is Urybb
+These are all the tasks of this project, the ones that are completed link to the corresponding files.
 
-Using flags and length tags:
+### [0. I'm not going anywhere. You can print that wherever you want to. I'm here and I'm a Spur for life](./functions.c)
+* Write a function that produces output according to format.
+  - c : converts input into a character
+  - s : converts input into a string
 
-    Printing the string of chars "Hello, Holberton":
-        Use: _printf("2 * 2 = %+d and 5 * -5 = %+i", 4, -25);
-        Output: 2 * 2 = +4 and 5 * -5 = -25
+### [1. Education is when you read the fine print. Experience is what you get if you don't](handle_print.c)
+* Handle the following conversion specifiers:
+  - d : converts input into a base 10 integer
+  - i : converts input into an integer
 
-    Printing a long integer number and short integer number:
-        Use: _printf("1 million as a long int is %ld, but as a short int is %hd", 1000000, 1000000);
-        Output: 1 million as a long int is 1000000, but as a short int is 16960
+### [2. Just because it's in print doesn't mean it's the gospel]()
+* Create a man page for your function
 
-File Functions
-_printf.c
+### [3. With a face like mine, I do better in print]()
+* Handle the following conversion specifiers:
+  - b : the unsigned int argument is converted to binary
 
-Own Printf Function That Performs Formatted Output Conversion And Print Data.
-main.h
+### [4. What one has not experienced, one will never understand in print]()
+* Handle the following conversion specifiers:
+  - u : converts the input into an unsigned integer
+  - o : converts the input into an octal number
+  - x : converts the input into a hexadecimal number
+  - X : converts the input into a hexadecimal number with capital letters
 
-Header File Where All Prototypes Are Saved.
-get_print_func.c
+### [5. Nothing in fine print is ever good news]()
+* Use a local buffer of 1024 chars in order to call write as little as possible.
 
-Pointer To A Function That Selects The Correct Function To Perform The Operation.
-print_buf.c
+### [6. My weakness is wearing too much leopard print](./print_custom.c)
+* Handle the following custom conversion specifier:
+  - S : prints the string
+  - Non printable characters (0 < ASCII value < 32 or >= 127) are printed this way: \x, followed by the ASCII code value in hexadecimal (upper case - always 2 characters)
 
-Function That Prints The Buffer.
-handl_buf.c
+### [7. How is the world ruled and led to war? Diplomats lie to journalists and believe these lies when they see them in print](./print_address.c)
+* Handle the following conversion specifier:
+  - p : int input is converted to a pointer address
 
-Function That Concatenates The Buffer Characters.
-print_chr.c
+### [8. The big print gives and the small print takes away](./get_flag.c)
+* Handle the following flag characters for non-custom conversion specifiers:
+  - \+ : adds a \+ in front of signed positive numbers and a \- in front of signed negative numbers
+  - space : same as \+, but adds a space (is overwritten by \+)
+  - \# : adds a 0 in front of octal conversions that don't begin with one, and a 0x or 0X for x or X conversions
 
-Function That Writes The Character C To Stdout.
+### [9. Sarcasm is lost in print]
+* Handle the following length modifiers for non-custom conversion specifiers:
+  - l : converts d, i, u, o, x, X conversions in short signed or unsigned ints
+  - h : converts d, i, u, o, x, X conversions in long signed or unsigned ints
 
-/* Indetifier : %c */
+### [10. Print some money and give it to us for the rain forests]
+* Handle the field width for non-custom conversion specifiers.
 
-print_str.c
+### [11. The negative is the equivalent of the composer's score, and the print the performance]
+* Handle the precision for non-custom conversion specifiers.
 
-Function That Writes The String To Stdout.
+### [12. It's depressing when you're still around and your albums are out of print]
+* Handle the 0 flag character for non-custom conversion specifiers.
 
-/* Indetifier : %s */
+### [13. Every time that I wanted to give up, if I saw an interesting textile, print what ever, suddenly I would see a collection]
+* Handle the - flag character for non-custom conversion specifiers.
 
-print_int.c
+### [14. Print is the sharpest and the strongest weapon of our party](./print_custom.c)
+* Handle the following custom conversion specifier:
+  - r : prints the reversed string
 
-Function That Prints An Integer.
+### [15. The flood of print has turned reading into a process of gulping rather than savoring](./print_custom.c)
+* Handle the following custom conversion specifier:
+  - R : prints the rot13'ed string
 
-/* Indetifier : %i or %d */
+### [16. * ]
+* All the above options work well together.
 
-print_bnr.c
+---
 
-Function That Prints Decimal In Binary.
-
-/* Indetifier : %b */
-
-print_oct.c
-
-Function That Prints Decimal In Octal.
-
-/* Indetifier : %o */
-
-print_hex.c
-
-Function That Prints Decimal In Hexadecimal.
-
-/* Indetifier : %x */
-
-print_upx.c
-
-Function That Prints Decimal In Uppercase Hexadecimal.
-
-/* Indetifier : %X */
-
-print_usr.c
-
-Function That Prints A String And Values Of Non-Printed Chars.
-
-/* Indetifier : %S */
-
-print_unt.c
-
-Function That Prints An Unsigned Integer.
-
-/* Indetifier : %u */
-
-print_rev.c
-
-Function That Writes The String To Stdout In Reverse.
-
-/* Indetifier : %r */
-
-print_rot.c
-
-Function That Writes The String To Stdout In Rot13.
-
-/* Indetifier : %R */
-
-print_add.c
-
-Function That Prints The Address Of An Input Variable.
-
-/* Indetifier : %p */
-
-print_long_oct.c
-
-Function That Prints Long Decimal Number In Octal.
-
-/* Indetifier : %lo */
-
-print_long_hex.c
-
-Function That Prints Long Decimal Number In Hexadecimal.
-
-/* Indetifier : %lx */
-
-print_long_int.c
-
-Function That Prints A Long Integer.
-
-/* Indetifier : %li */
-
-print_long_upx.c
-
-Function That Prints A Long Decimal In Uppercase Hexadecimal.
-
-/* Indetifier : %lX */
-
-print_long_unt.c
-
-Function That Prints A Long Unsigned Integer.
-
-/* Indetifier : %lu */
-
-print_short_oct.c
-
-Function That Prints Short Decimal Number In Octal.
-
-/* Indetifier : %ho */
-
-print_short_hex.c
-
-Function That Prints Short Decimal Number In Hexadecimal.
-
-/* Indetifier : %hx */
-
-print_short_int.c
-
-Function That Prints A Short Integer.
-
-/* Indetifier : %hi */
-
-print_short_upx.c
-
-Function That Prints A Short Decimal In Uppercase Hexadecimal.
-
-/* Indetifier : %hX */
-
-print_short_unt.c
-
-Function That Prints A Short Unsigned Integer.
-
-/* Indetifier : %hu */
-
-print_num_hex.c
-
-Function That Print A Number In Hexadecimal Begining With 0 And x.
-
-/* Indetifier : %#x */
-
-print_num_oct.c
-
-Function That Prints A Number In Octal Begining With 0 And o.
-
-/* Indetifier : %#o */
-
-print_num_upx.c
-
-Function That Prints A Number In Uppercase Hexadecimal.
-
-/* Indetifier : %#X */
-
-print_plus_int.c
-
-Function That Prints An Integer With Plus Symbol.
-
-/* Indetifier : %+i */
-
-print_space_int.c
-
-Function That Prints An Integer Begining With 0 And u.
-
-/* Indetifier : % i */
-
-ev_print_func.c
-
-Function That Returns The Amount Of Indetifiers.
+### Authors
+* **EYOB LAKEW**
+* **WENDIMU TAREKEGNE**
